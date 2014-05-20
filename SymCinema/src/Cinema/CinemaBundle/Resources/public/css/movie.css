@@ -1,0 +1,30 @@
+.date { margin-bottom: 20px; border-bottom: 1px solid #ccc; font-size: 24px; color: #666; line-height: 30px }
+.movie { margin-bottom: 20px; }
+.movie img { width: 190px; float: left; padding: 5px; border: 1px solid #ccc; margin: 0 10px 10px 0; }
+.movie .meta { clear: left; margin-bottom: 20px; }
+.movie .snippet p.continue { margin-bottom: 0; text-align: right; }
+.movie .meta { font-style: italic; font-size: 12px; color: #666; }
+.movie .meta p { margin-bottom: 5px; line-height: 1.2em; }
+.movie img.large { width: 300px; min-height: 165px; }
+
+
+
+.showings { clear: both; }
+.showings .odd { background: lightgrey; }
+.showings .showings { padding: 20px; }
+.showings .showings p { margin-bottom: 0; }
+.showings h3 { background: #eee; padding: 10px; font-size: 20px; margin-bottom: 20px; clear: both; }
+.showings .previous-showings { margin-bottom: 20px; }
+
+
+
+/*EXTRA CODE*/
+.movie_info { margin-bottom: 20px; max-width:48%;float:left;}
+.movie_info img { width: 190px; float: left; padding: 5px; border: 1px solid #ccc; margin: 0 10px 10px 0; }
+.movie_info .meta { clear: left; margin-bottom: 20px; }
+.movie_info .snippet p.continue { margin-bottom: 0; text-align: right; }
+.movie_info .meta { font-style: italic; font-size: 12px; color: #666; }
+.movie_info .meta p { margin-bottom: 5px; line-height: 1.2em; }
+.movie_info img.large { width: 300px; min-height: 165px; }
+
+.showing_info {max-width:48%;float:right;}

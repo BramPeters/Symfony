@@ -1,0 +1,16 @@
+{# src/Cinema/CinemaBundle/Resources/views/Page/login.html.twig #}
+{% extends 'CinemaCinemaBundle::layout.html.twig' %}
+
+{% block title %}Contact{% endblock%}
+
+{% block body %}
+
+    <div class="showing_info" style="max-width:200px;float:left;">
+        <h1>Login</h1>
+        {% render controller("FOSUserBundle:Security:login") %}
+    </div>
+    <div class="movie_info" style="max-width:400px;float:right;margin-right: 10em;">
+        <h1>Registreer</h1>     
+        {% render controller("FOSUserBundle:Registration:register") %}
+    </div>
+{% endblock %}

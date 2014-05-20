@@ -1,0 +1,39 @@
+# src/Cinema/CinemaBundle/Resources/config/routing.yml
+CinemaCinemaBundle_homepage:
+    pattern:  /
+    defaults: { _controller: CinemaCinemaBundle:Page:index }
+    requirements:
+        _method:  GET
+        
+CinemaCinemaBundle_about:
+    pattern:  /about
+    defaults: { _controller: CinemaCinemaBundle:Page:about }
+    requirements:
+        _method:  GET  
+        
+CinemaCinemaBundle_login:
+    pattern:  /login
+    defaults: { _controller: CinemaCinemaBundle:Page:login }
+    requirements:
+        _method:  GET  
+
+CinemaCinemaBundle_movielist:
+    pattern:  /movielist
+    defaults: { _controller: CinemaCinemaBundle:Page:movielist }
+    requirements:
+        _method:  GET         
+
+CinemaCinemaBundle_movie_show:
+    pattern:  /movie/{id}
+    defaults: { _controller: CinemaCinemaBundle:Movie:show }
+    requirements:
+        _method:  GET
+        id: \d+   
+        
+CinemaCinemaBundle_showing_show:
+    pattern:  /showing/{id}
+    defaults: { _controller: CinemaCinemaBundle:Showing:show }
+    requirements:
+        _method:  GET|POST
+        id: \d+   
+     

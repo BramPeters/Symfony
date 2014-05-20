@@ -1,0 +1,14 @@
+{# src/Cinema/CinemaBundle/Resources/views/layout.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/cinemacinema/css/movie.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('bundles/cinemacinema/css/sidebar.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+
+{% block sidebar %}
+    {% render controller("CinemaCinemaBundle:Page:sidebar") %}
+    
+{% endblock %}

@@ -1,0 +1,56 @@
+{# src/Cinema/CinemaBundle/Resouces/views/Showing/show.html.twig #}
+{% extends 'CinemaCinemaBundle::layout.html.twig' %}
+
+{% block title %}{{ showing.Movie.title }}{% endblock %}
+
+{% block body %}
+<div style= "border-bottom: 2px solid grey; padding-bottom:3em;">
+<h1>Tickets reserveren:</h1>
+<header style="max-width:400px;float:left;margin-right: 10em;">
+    <h2>{{ showing.Movie.title }}</h2>
+</header>
+
+<header style="max-width:400px;float:left;">
+    <h2>{{ showing.startingtime|date('j F H:i') }}</h2>
+</header>
+</div>
+<article class="movie_info" style="max-width:400px;float:left;margin-right: 10em;">  
+
+    <img src="{{ asset(['images/', showing.Movie.image]|join) }}" alt="{{ showing.Movie.title }} image not found" class="large" />
+    <div>
+        <p>Speelt sinds: <time datetime="{{ showing.Movie.created|date('c') }}">{{ showing.Movie.created|date('l, j F, Y') }}</time></p>
+        <p>Filmduur: {{ showing.Movie.duration }} minuten</p>   
+        <p>Imdb: <a href="{{ showing.Movie.imdblink }}" target="_newtab">{{ showing.Movie.title }}</a></p>
+    </div>
+</article>
+<article class="showing_info" style="max-width:400px;float:left;">
+
+    <div>
+        <p>Aantal vrije plaatsen: {{ showing.hall.seats - showing.soldtickets }}</p>
+        <div class="input-group">
+            <!--<label for="testsessieselect" class="input-group-addon widthcatinput">Aantal ticketjes:</label>            
+            <select name="category" class="form-control" id="category"/>
+            
+            {# % for i in 1..10 % #}
+            <option value="{# {i}}">{{i} #}</option>
+            {# % endfor % #}
+            </select>
+            -->
+            
+             <form action="{{ path('CinemaCinemaBundle_showing_show', { 'id': showing.id }) }}" method="post" {{ form_enctype(form) }} class="ticketsale">
+        {{ form_errors(form) }}
+
+        {{ form_row(form.showing) }}
+        {{ form_row(form.ticketcount) }}
+
+        {{ form_rest(form) }}
+         
+
+        <input type="submit" value="Submit" />
+    </form>
+        </div>
+    </div>
+</article>
+
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{# src/Cinema/CinemaBundle/Resources/views/Page/sidebar.html.twig #}
+
+<section class="section">
+    <header>
+        <h3>Voorstellingen van vandaag: {{ "now"|date("d/m/Y") }}</h3>
+    </header>
+    <p class="tags">
+    <div>
+    <h2 style="background-color: red; color:white; opacity:0.7; padding: 3px">Rode Zaal</h2>
+        {% for showing in todaysMovies %}        
+        {% if  showing.Hall.name == 'Rode' %}
+    <a href="{{ path('CinemaCinemaBundle_showing_show', { 'id': showing.id }) }}">
+        <span class="weight-">{{ showing.startingtime|date('H:i') }}<br>{{ showing.Movie.title }}</span><br>
+        </a>
+        {% endif %}
+        {% else %}
+            <p>Er spelen geen films in deze zaal vandaag.</p>
+        {% endfor %}
+    </div>
+    <div>
+   <h2 style="background-color: green; color:white; opacity:0.7; padding: 3px">Groene Zaal</h2>
+        {% for showing in todaysMovies %}        
+        {% if  showing.Hall.name == 'Groene' %}
+   <a href="{{ path('CinemaCinemaBundle_showing_show', { 'id': showing.id }) }}">
+        <span class="weight-">{{ showing.startingtime|date('H:i') }}<br>{{ showing.Movie.title }}</span><br>
+        </a>
+        {% endif %}
+        {% else %}
+            <p>Er spelen geen films in deze zaal vandaag.</p>
+        {% endfor %}
+     </div>       
+      
+    <div>
+   <h2 style="background-color: blue; color:white; opacity:0.7; padding: 3px">Blauwe Zaal</h2>
+        {% for showing in todaysMovies %}        
+        {% if  showing.Hall.name == 'Blauwe' %}
+   <a href="{{ path('CinemaCinemaBundle_showing_show', { 'id': showing.id }) }}">
+        <span class="weight-">{{ showing.startingtime|date('H:i') }}<br>{{ showing.Movie.title }}</span><br>
+        </a>
+        {% endif %}
+        {% else %}
+            <p>Er spelen geen films in deze zaal vandaag.</p>
+        {% endfor %}  
+            </div>
+            
+    </p>
+</section>

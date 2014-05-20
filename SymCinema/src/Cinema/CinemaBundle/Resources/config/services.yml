@@ -1,0 +1,7 @@
+parameters:
+#    cinema_cinema.example.class: Cinema\CinemaBundle\Example
+
+services:
+#    cinema_cinema.example:
+#        class: %cinema_cinema.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

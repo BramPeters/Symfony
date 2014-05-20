@@ -1,0 +1,30 @@
+{# src/Cinema/CinemaBundle/Resouces/views/Showing/show.html.twig #}
+{% extends 'CinemaCinemaBundle::layout.html.twig' %}
+
+{% block title %}{{ showing.Movie.title }}{% endblock %}
+
+{% block body %}
+<div style= "border-bottom: 2px solid grey; padding-bottom:3em;">
+<h1>Tickets reserveren:</h1>
+<header style="max-width:400px;float:left;margin-right: 10em;">
+    <h2>{{ showing.Movie.title }}</h2>
+</header>
+
+<header style="max-width:400px;float:left;">
+    <h2>{{ showing.startingtime|date('j F H:i') }}</h2>
+</header>
+</div>
+<article class="movie_info" style="max-width:400px;">
+
+    <div>
+        <p>
+        Uw tickets zijn gereserveerd.
+        </p>
+        <p>
+        Veel plezier met uw film.
+        </p>
+    </div>
+</article>
+
+
+{% endblock %}

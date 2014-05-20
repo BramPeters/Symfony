@@ -1,0 +1,206 @@
+{# src/Cinema/CinemaBundle/Resources/views/Page/index.html.twig #}
+{% extends 'CinemaCinemaBundle::layout.html.twig' %}
+    
+    
+{% block javascripts %}
+{{ parent() }}
+
+            <script src="{{ asset('bundles/cinemacinema/js/lib/jquery-1.11.0.min.js') }}"></script>
+            <script src="{{ asset('bundles/cinemacinema/js/lib/jquery-ui-1.10.4.custom.min.js') }}"></script>
+            <script src="{{ asset('bundles/cinemacinema/js/lib/jquery.ui.datepicker-nl-BE.js') }}"></script>
+            
+            <script type="text/javascript">
+	$(function(){
+		$('#datepicker').datepicker({
+        onSelect: function(date) {
+            //alert(date);
+            $('#yourptag').html( date );
+        },
+			inline: true,
+			showOtherMonths: true,
+                        altField: "#alternate",
+			//dayNamesMin: ['Ma', 'Di', 'Woe', 'Do', 'Vrij', 'Zat', 'Zon'],
+		});
+                $.datepicker.setDefaults(
+                    $.extend(
+                        {'dateFormat':'dd-mm-yy'},
+                        $.datepicker.regional['nl']
+                    )
+                );
+	});
+</script>
+            
+            
+        {% endblock %}
+
+
+
+
+
+{% block body %}
+<div style="text-align: center">
+    <div style="float:left; ">
+    <div id="datepicker"></div>
+    </div>
+    <h2>Kies uw film voor:</h2>
+    <h2 id="alternate">{# { "now"|date_modify("+1 day")|date("d/m/Y") } #}</h2>
+    <h2 id="yourptag"></h2>
+    <div style="float:right; width:400px; ">
+            <table style=" height:200px; ">
+                <th class="info" style="width:10em;padding:15px;">Starttijd v.d. film</th>
+                <th class="info" style="width:10em;padding:15px;">Filmtitel</th>
+                <th class="info" style="width:10em;padding:15px;">Resterende vrije plaatsen</th>
+                <th class="info" style="width:10em;padding:15px;">Tickets reserveren</th>
+        {% for showing in movies %}
+            
+    {# % if  showing.hallId.name == 'Rode' % #}                    
+                        <tr  class="showing {{ cycle(['odd', 'even'], loop.index0) }}" id="showing-{{ showing.id }}">
+                            <td>{{ showing.startingtime|date('H:i') }}</td>
+                            <td style="width:12em;"><a href="{{ path('CinemaCinemaBundle_movie_show', { 'id': showing.Movie.id }) }}">{{ showing.Movie.title }} (info)</a></td>
+                            <td style="width:10em;">{{ showing.hall.seats - showing.soldtickets }}</td>
+                            <td style="width:10em;"><a href="{{ path('CinemaCinemaBundle_showing_show', { 'id': showing.id }) }}">Reserveren</a></td>
+                        </tr>
+        {# % endif % #}
+            
+        {% else %}
+            <p>Er zijn geen geplande voorstellingen voor deze dag.</p>
+        {% endfor %}
+            
+            </table>
+            </div>
+     
+    
+    
+    <!-- OUDE VERSIE -->
+    <!-- 
+    <div style="float:right; width:500px; background-color:#eee;">
+        <table style=" height:200px; ">
+            <h3>Ochtend</h3>
+            <div>
+                <th class="info" style="width:10em;">Uur</th>
+                <th class="info" style="width:10em;">Naam</th>
+                <th class="info">Plaatsen</th>
+                <th class="info">Infolink</th>
+            </div>
+
+            <div >
+                <tr style="background-color:white">
+                    <td>10:20</td>
+                    <td style="width:10em;">Belle en het Beest</td>
+                    <td style="width:10em;">120</td>
+                    <td style="width:10em;"><a href="">Infolink</a></td>
+                </tr>
+            </div>
+            <div>
+                <tr style="background-color:white">
+                    <td style="background-color:white">10:20</td>
+                    <td style="width:10em;background-color:white">Pocahontas</td>
+                    <td style="width:10em;background-color:white">87</td>
+                    <td style="width:10em;background-color:white"><a href="">Infolink</a></td>
+                </tr>
+            </div>
+            <div>
+                <tr style="background-color:white">
+                    <td>10:30</td>
+                    <td style="width:10em;">Dumbo</td>
+                    <td style="width:10em;">57</td>
+                    <td style="width:10em;"><a href="">Infolink</a></td>
+                </tr>
+            </div>
+        </table>
+        <table style=" height:200px;">
+
+            <tr><h3>Middag</h3></tr>
+
+            <div>
+                <th class="info" style="width:10em;">Uur</th>
+                <th class="info" style="width:10em;">Naam</th>
+                <th class="info">Plaatsen</th>
+                <th class="info">Infolink</th>
+            </div>
+
+            <div>
+                <tr style="background-color:white">
+                    <td >14:20</td>
+                    <td style="width:10em;">Belle en het Beest</td>
+                    <td style="width:10em;">110</td>
+                    <td style="width:10em;"><a href="">Infolink</a></td>
+                </tr>
+            </div>
+            <div>
+                <tr style="background-color:white">
+                    <td >14:20</td>
+                    <td style="width:10em;">Doornroosje</td>
+                    <td style="width:10em;">75</td>
+                    <td style="width:10em;"><a href="">Infolink</a></td>
+                </tr>
+            </div>
+        </table>
+        <table style=" height:200px;">
+            <tr><h3>Avond</h3></tr>
+
+            <div>
+                <th class="info" style="width:10em;">Uur</th>
+                <th class="info" style="width:10em;">Naam</th>
+                <th class="info">Plaatsen</th>
+                <th class="info">Infolink</th>
+            </div>
+
+            <div>
+                <tr style="background-color:white">
+                    <td >19:45</td>
+                    <td style="width:10em;">Belle en het Beest</td>
+                    <td style="width:10em;">120</td>
+                    <td style="width:10em;"><a href="">Infolink</a></td>
+                </tr>
+            </div>
+            <div>
+                <tr style="background-color:white">
+                    <td >19:30</td>
+                    <td style="width:10em;">Assepoester</td>
+                    <td style="width:10em;">33</td>
+                    <td style="width:10em;"><a href="">Infolink</a></td>
+                </tr>
+            </div>
+        </table>
+        <table style=" height:200px;">
+            <tr><h3>Nacht</h3></tr>
+
+
+            <div>
+                <th class="info" style="width:10em;">Uur</th>
+                <th class="info" style="width:10em;">Naam</th>
+                <th class="info">Plaatsen</th>
+                <th class="info">Infolink</th>
+            </div>
+
+            <div>
+                <tr style="background-color:white">
+                    <td >22:10</td>
+                    <td style="width:10em;">Belle en het Beest</td>
+                    <td style="width:10em;">12</td>
+                    <td style="width:10em;"><a href="">Infolink</a></td>
+                </tr>
+            </div>
+            <div>
+                <tr style="background-color:white">
+                    <td >22:15</td>
+                    <td style="width:10em;">Assepoester</td>
+                    <td style="width:10em;">35</td>
+                    <td style="width:10em;"><a href="">Infolink</a></td>
+                </tr>
+            </div>
+            <div>
+                <tr style="background-color:white">
+                    <td >22:20</td>
+                    <td style="width:10em;">Dumbo</td>
+                    <td style="width:10em;">55</td>
+                    <td style="width:10em;"><a href="">Infolink</a></td>
+                </tr>
+            </div>
+        </table>
+    </div>
+    -->
+    <!-- OUDE VERSIE -->
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{# src/Cinema/CinemaBundle/Resources/views/Showing/index.html.twig #}
+
+{% for showing in showings %}
+    <article class="showing {{ cycle(['odd', 'even'], loop.index0) }}" id="showing-{{ showing.id }}">
+        <header>
+            <p><a href="{{ path('CinemaCinemaBundle_showing_show', { 'id': showing.id }) }}"><span class="highlight">
+                        <time datetime="{{ showing.startingtime|date('c') }}">{{ showing.startingtime|date('l, j F, Y') }} - {{ showing.startingtime|date('H:i') }}</time>
+                    </span> | Plaatsen: {{ showing.soldtickets }} van de {{showing.Hall.seats}} verkocht.</a></p>
+        </header>
+    </article>
+{% else %}
+    <p>Er zijn geen geplande vertoningen voor deze film.</p>
+{% endfor %}

@@ -1,0 +1,13 @@
+{# src/Cinema/CinemaBundle/Resources/views/Page/movielist.html.twig #}
+{% extends 'CinemaCinemaBundle::layout.html.twig' %}
+
+{% block body %}
+<h1 style="border-bottom: 2px lightgrey solid">Filmlijst</h1>
+    {% for movie in movies %}
+        <article class="movie {{ cycle(['odd', 'even'], loop.index0) }}" style="margin-left:1em;">
+                <h3><a href="{{ path('CinemaCinemaBundle_movie_show', { 'id': movie.id }) }}">{{ movie.title }}</a></h3>
+        </article>
+    {% else %}
+        <p>There are no blog entries for symblog</p>
+    {% endfor %}
+{% endblock %}

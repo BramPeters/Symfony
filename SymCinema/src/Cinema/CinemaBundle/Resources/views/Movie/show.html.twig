@@ -1,0 +1,26 @@
+{# src/Cinema/CinemaBundle/Resouces/views/Movie/show.html.twig #}
+{% extends 'CinemaCinemaBundle::layout.html.twig' %}
+
+{% block title %}{{ movie.title }}{% endblock %}
+
+{% block body %}
+    <article class="movie">
+        <header>
+            
+            <h2>{{ movie.title }}</h2>
+        </header>
+        <img src="{{ asset(['images/', movie.image]|join) }}" alt="{{ movie.title }} image not found" class="large" />
+        <div>
+            <p>Eerste speeldag: <time datetime="{{ movie.created|date('c') }}">{{ movie.created|date('l, j F, Y') }}</time></p>
+            <p>Filmduur: {{ movie.duration }} minuten</p>
+            <p>Imdb: <a href="{{ movie.imdblink }}" target="_newtab">{{ movie.title }}</a></p>
+            
+            <section class="showings" id="showings">
+                <section class="previous-showings">
+                    <h3>Eerstvolgende vertoningen:</h3>
+                    {% include 'CinemaCinemaBundle:Showing:index.html.twig' with { 'showings': showings } %}
+                </section>
+            </section>
+        </div>
+    </article>
+{% endblock %}

@@ -1,0 +1,31 @@
+# src/Cinema/CinemaBundle/Resources/config/User.orm.yml
+Cinema\CinemaBundle\Entity\User:
+    type:  entity
+    table: customers
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        firstName:
+            type: string
+            length: 128
+            column: firstName
+        lastName:
+            type: string
+            length: 128
+            column: lastName
+        emailAddress:
+            type: string
+            length: 128
+            unique: true
+            column: emailAddress
+        password:
+            type: string
+            length: 255
+            column: password
+        isEnabled:
+            type: boolean
+            column: is_enabled
+             
